@@ -1,5 +1,7 @@
 :root {
   --background: rgb(2, 0, 36);
+  --sidebar: rgb(7, 4, 20);
+  --sidebar-border: rgb(137, 135, 175);
   --font-color: white;
   --sm: 300;
   --md: 500;
@@ -9,6 +11,7 @@
 * {
   margin: 0;
   font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
 }
 
 html {
@@ -34,6 +37,7 @@ nav {
 nav span {
   color: var(--font-color);
   padding: 0 10px;
+  cursor: pointer;
 }
 nav h1 {
   color: var(--font-color);
@@ -58,19 +62,19 @@ nav h1 {
   background: linear-gradient(0deg, rgb(2, 0, 36) 8%, transparent 80%);
 }
 
-section {
+.trending {
   height: 20%;
   position: relative;
   top: -90px;
   padding: 10px;
 }
-section ::-webkit-scrollbar {
+.trending ::-webkit-scrollbar {
   width: 0;
 }
-section h2 {
+.trending h2 {
   color: var(--font-color);
 }
-section div {
+.trending div {
   height: 100%;
   display: grid;
   grid-auto-flow: column;
@@ -79,9 +83,55 @@ section div {
   gap: 12px;
   overflow-x: auto;
 }
-section div img {
+.trending div img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.sidebar {
+  position: relative;
+  top: -578px;
+  background-color: var(--sidebar);
+  color: var(--font-color);
+  box-shadow: 0px 0px 0px 0px var(--sidebar);
+  width: 40%;
+  height: 100%;
+}
+.sidebar .sidebar-div span {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.sidebar .sidebar-div h3 {
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  cursor: pointer;
+}
+.sidebar .sidebar-div h3 span {
+  border: none;
+  padding: 0;
+}
+.sidebar .sidebar-div div {
+  overflow-y: auto;
+}
+.sidebar .sidebar-div div h4 {
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+.sidebar .shadow {
+  position: absolute;
+  top: 0;
+  left: 156px;
+  background: linear-gradient(90deg, var(--sidebar) 0%, transparent 200%);
+  width: 150%;
+  height: 100%;
+}
+
+.inactive {
+  display: none !important;
 }/*# sourceMappingURL=app.css.map */
