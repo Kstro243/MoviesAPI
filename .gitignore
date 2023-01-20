@@ -105,3 +105,10 @@ dist
 
 #API_KEY
 src/API_KEY.js
+
+#Images
+img and icons/
+
+#styles
+styles/app.css.map
+styles/app.scss
