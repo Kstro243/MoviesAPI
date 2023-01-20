@@ -1,0 +1,19 @@
+{
+  "name": "curso-api-practico",
+  "version": "1.0.0",
+  "description": "Curso de consumo de API REST práctico",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kstro243/Curso-API-Practico.git"
+  },
+  "author": "Juan Castro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kstro243/Curso-API-Practico/issues"
+  },
+  "homepage": "https://github.com/Kstro243/Curso-API-Practico#readme"
+}
