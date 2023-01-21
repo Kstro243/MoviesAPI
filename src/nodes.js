@@ -3,6 +3,8 @@ const SideBar = document.querySelector('.sidebar');
 const Menu = document.querySelector('.menu');
 const categories = document.querySelector('.categories');
 const CategoriesDeploy = document.querySelector('.categories-deploy');
+const OpenCategoriesIcon = document.querySelector('.open');
+const CloseCategoriesIcon = document.querySelector('.close');
 
 Menu.addEventListener('click', toggleSideBar);
 SpanAside.addEventListener('click', toggleSideBar);
@@ -14,6 +16,8 @@ function toggleSideBar() {
     if (!isasideclosed) {
         SideBar.classList.add('inactive');
         categories.classList.add('inactive');
+        CloseCategoriesIcon.classList.add('inactive');
+        OpenCategoriesIcon.classList.remove('inactive');
     } else{
         SideBar.classList.remove('inactive');
     }
@@ -24,7 +28,11 @@ function toggleCategories(){
 
     if (!iscategoriesclosed) {
         categories.classList.add('inactive');
+        OpenCategoriesIcon.classList.remove('inactive');
+        CloseCategoriesIcon.classList.add('inactive');
     } else{
         categories.classList.remove('inactive');
+        OpenCategoriesIcon.classList.add('inactive');
+        CloseCategoriesIcon.classList.remove('inactive');
     }
 }

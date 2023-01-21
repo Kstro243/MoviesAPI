@@ -17,8 +17,8 @@ function navigator(){
     }
 }
 
-function trendPage(){
-    console.log('Trends!');
+function actionPage(){
+    console.log('Action!');
 }
 
 function searchPage() {
@@ -26,15 +26,16 @@ function searchPage() {
 }
 
 function moviePage() {
-    console.log('movie!');
+    console.log('Movie!');
 }
 
-function categoryPage() {
-    console.log('Categories!');
+function seriesPage() {
+    console.log('Series!');
 }
 
 function homePage() {
     console.log('Home!');
     getTrendingPreview();
     getCategories();
+    getTrendingSeries();
 }
