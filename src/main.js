@@ -14,12 +14,20 @@ async function getTrendingPreview() {
     console.log(movies);
 
     const moviepreview = document.querySelector(".movie-preview");
+    moviepreview.innerHTML = ""
+    const divtransparent = document.createElement('div');
+    divtransparent.classList.add('transparent');
     const imgpreview = document.createElement('img');
     imgpreview.alt = movies[0].title;
     imgpreview.src = "https://image.tmdb.org/t/p/w500"+ movies[0].poster_path; 
-    moviepreview.appendChild(imgpreview)
-
+    moviepreview.appendChild(imgpreview);
+    moviepreview.appendChild(divtransparent);
+    
     const section = document.querySelector(".trending");
+    section.innerHTML = ""
+    const h2 = document.createElement('h2');
+    h2.innerHTML = `Trending<span class="material-symbols-outlined">local_fire_department</span>`;
+    section.appendChild(h2);
     const div = document.createElement('div');
 
     movies.forEach(movie => {
@@ -32,7 +40,6 @@ async function getTrendingPreview() {
 
     section.appendChild(div);
 }
-getTrendingPreview();
 
 async function getCategories() {
     const {data} = await api("genre/movie/list");
@@ -41,41 +48,11 @@ async function getCategories() {
     console.log(categories);
 
     const categoriesdiv = document.querySelector('.categories');
+    categoriesdiv.innerHTML = "";
 
     categories.forEach(category => {
         const h4 = document.createElement('h4');
         h4.innerHTML = category.name;
         categoriesdiv.appendChild(h4);
     })
-}
-getCategories();
-
-const SpanAside = document.querySelector('.sidebar-div span');
-const SideBar = document.querySelector('.sidebar');
-const Menu = document.querySelector('.menu');
-const categories = document.querySelector('.categories');
-const CategoriesDeploy = document.querySelector('.categories-deploy');
-
-Menu.addEventListener('click', toggleSideBar);
-SpanAside.addEventListener('click', toggleSideBar);
-CategoriesDeploy.addEventListener('click', toggleCategories);
-
-function toggleSideBar() {
-    const isasideclosed = SideBar.classList.contains('inactive');
-
-    if (!isasideclosed) {
-        SideBar.classList.add('inactive');
-    } else{
-        SideBar.classList.remove('inactive');
-    }
-};
-
-function toggleCategories(){
-    const iscategoriesclosed = categories.classList.contains('inactive');
-
-    if (!iscategoriesclosed) {
-        categories.classList.add('inactive');
-    } else{
-        categories.classList.remove('inactive');
-    }
 }
