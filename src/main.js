@@ -35,7 +35,7 @@ async function getTrendingPreview() {
     const vermas = document.createElement('h2');
     vermas.innerHTML = "Ver más";
     vermas.addEventListener('click', () =>{
-        location.hash = "#trending="
+        location.hash = "#trending=Trending"
     })
 
     divTexto.appendChild(h2);
@@ -75,7 +75,7 @@ async function getPopularMovies() {
     const vermas = document.createElement('h2');
     vermas.innerHTML = "Ver más";
     vermas.addEventListener('click', () =>{
-        location.hash = "#popular="
+        location.hash = "#popular=Popular"
     })
 
     divTexto.appendChild(h2);
@@ -140,7 +140,6 @@ async function getMovieByCategory(id, name) {
     span.addEventListener('click', () => {
         location.hash = "#home=";
     })
-    // trendingList.innerHTML = `<span class="material-symbols-outlined return">arrow_back</span>`
     trendingList.appendChild(h4);
     trendingList.appendChild(span);
     categoriesdiv.appendChild(trendingList);
@@ -149,6 +148,49 @@ async function getMovieByCategory(id, name) {
     trendingGrid.classList.add('trending-grid');
 
     categories.forEach(category => {
+        const img = document.createElement('img');
+        img.src = "https://image.tmdb.org/t/p/w500" + category.poster_path;
+        img.alt = category.title;
+
+        trendingGrid.appendChild(img);
+    })
+
+    categoriesdiv.appendChild(trendingGrid);
+}
+
+async function getGenericList(type) {
+    if (type === "Popular") {
+        var {data} = await api("movie/popular");
+        var movies = data.results;
+        } else {
+        var {data} = await api("trending/movie/day");
+        var movies = data.results;
+    }
+
+    console.log(movies);
+
+    const categoriesdiv = document.querySelector('.trending-page');
+    categoriesdiv.innerHTML = "";
+
+    const trendingList = document.createElement('div');
+    trendingList.classList.add('trending-list');
+    const h4 = document.createElement('h4');
+    h4.innerHTML = type;
+    const span = document.createElement('span');
+    span.innerHTML = "arrow_back";
+    span.classList.add('material-symbols-outlined');
+    span.classList.add('return');
+    span.addEventListener('click', () => {
+        location.hash = "#home=";
+    })
+    trendingList.appendChild(h4);
+    trendingList.appendChild(span);
+    categoriesdiv.appendChild(trendingList);
+
+    const trendingGrid = document.createElement('div');
+    trendingGrid.classList.add('trending-grid');
+
+    movies.forEach(category => {
         const img = document.createElement('img');
         img.src = "https://image.tmdb.org/t/p/w500" + category.poster_path;
         img.alt = category.title;

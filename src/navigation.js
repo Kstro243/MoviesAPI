@@ -52,6 +52,9 @@ function TrendingPage() {
     PopularMovies.classList.add('inactive');
     TrendingMoviesPage.classList.remove('inactive');
     MovieDetail.classList.add('inactive');
+
+    const [_, tipo] = location.hash.split('=');
+    getGenericList(tipo);
     console.log('Trending!');
 }
 
@@ -61,6 +64,9 @@ function PopularPage() {
     PopularMovies.classList.add('inactive');
     TrendingMoviesPage.classList.remove('inactive');
     MovieDetail.classList.add('inactive');
+
+    const [_, tipo] = location.hash.split('=');
+    getGenericList(tipo);
     console.log('Popular!');
 }
 
