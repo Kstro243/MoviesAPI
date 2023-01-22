@@ -1,6 +1,6 @@
 for (let i = 0; i < returnHome.length; i++) {
     returnHome[i].addEventListener('click', () => {
-            location.hash = "#home=";
+            history.back();
           })
 };
 
@@ -48,6 +48,8 @@ function MovieDetailPage() {
     Search.classList.add('inactive');
     HomeNav.classList.remove('inactive');
 
+    const [_, MovieId] = location.hash.split('=');
+    getMovieById(MovieId);
     console.log('Search!');
 }
 

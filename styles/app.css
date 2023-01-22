@@ -127,6 +127,7 @@ nav .Search input {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: pointer;
 }
 
 .popular-movies {
@@ -172,6 +173,7 @@ nav .Search input {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: pointer;
 }
 
 .movie-detail {
@@ -219,6 +221,9 @@ nav .Search input {
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
 }
+.movie-detail .movie-detail-info ::-webkit-scrollbar {
+  width: 0;
+}
 .movie-detail .movie-detail-info .titleandstar {
   background: var(--background-detail);
   color: white;
@@ -240,6 +245,8 @@ nav .Search input {
   margin: 10px auto;
   border-radius: 16px;
   padding: 12px;
+  display: flex;
+  align-items: center;
 }
 .movie-detail .movie-detail-info .recommended {
   height: 50%;
@@ -256,6 +263,7 @@ nav .Search input {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: pointer;
 }
 
 .trending-page {
@@ -294,6 +302,7 @@ nav .Search input {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: pointer;
 }
 
 .sidebar {

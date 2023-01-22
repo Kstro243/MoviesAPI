@@ -12,7 +12,6 @@ const api = axios.create({
 async function getTrendingPreview() {
     const {data} = await api("trending/movie/day");
     const movies = data.results;
-    console.log(movies);
 
     //Movie preview poster
     const moviepreview = document.querySelector(".movie-preview");
@@ -52,7 +51,7 @@ async function getTrendingPreview() {
         img.alt = movie.title;
         img.src = "https://image.tmdb.org/t/p/w500"+ movie.poster_path; 
         img.addEventListener('click', () =>{
-            location.hash = "#detail="
+            location.hash = "#detail=" + movie.id;
         })
 
         div.appendChild(img);
@@ -64,7 +63,6 @@ async function getTrendingPreview() {
 async function getPopularMovies() {
     const {data} = await api("movie/popular");
     const popularS = data.results;
-    console.log(popularS);
     
     //Popular movies
     const section = document.querySelector(".popular-movies");
@@ -89,12 +87,27 @@ async function getPopularMovies() {
     popularS.forEach(Popular => {
         const img = document.createElement('img');
         img.alt = Popular.title;
-        img.src = "https://image.tmdb.org/t/p/w500"+ Popular.poster_path; 
+        img.src = "https://image.tmdb.org/t/p/w500"+ Popular.poster_path;
+        img.addEventListener('click', () =>{
+            location.hash = "#detail=" + Popular.id;
+        }) 
 
         div.appendChild(img);
     });
 
     section.appendChild(div);
+}
+
+function ImgsinDiv(movies, container) {
+    movies.forEach(movie => {
+        const img = document.createElement('img');
+        img.alt = movie.title;
+        img.src = "https://image.tmdb.org/t/p/w500"+ movie.poster_path; 
+        img.addEventListener('click', () =>{
+            location.hash = "#detail=" + movie.id;
+        })
+        container.appendChild(img);
+    });
 }
 // HomePage
 
@@ -103,7 +116,6 @@ async function getCategories() {
     const {data} = await api("genre/movie/list");
 
     const categories = data.genres;
-    console.log(categories);
 
     const categoriesdiv = document.querySelector('.categories');
     categoriesdiv.innerHTML = "";
@@ -121,10 +133,9 @@ async function getCategories() {
 }
 // Sidebar categories
 
-// Generic list
+// Generic list function
 function generateGenericList(nombre, data) {
     const movies = data.results;
-    console.log(movies);
 
     const categoriesdiv = document.querySelector('.trending-page');
     categoriesdiv.innerHTML = "";
@@ -151,13 +162,18 @@ function generateGenericList(nombre, data) {
         const img = document.createElement('img');
         img.src = "https://image.tmdb.org/t/p/w500" + category.poster_path;
         img.alt = category.title;
+        img.addEventListener('click', () =>{
+            location.hash = "#detail=" + category.id;
+        })
 
         trendingGrid.appendChild(img);
     })
 
     categoriesdiv.appendChild(trendingGrid);
 }
+// Generic list function
 
+// Generic list
 async function getMovieByCategory(id, name) {
     // const {data} = await api("/discover/movie", {
     //     params: {
@@ -181,4 +197,58 @@ async function getGenericList(type) {
 
     generateGenericList(type, data);
 }
-// Generic list
+// Generic list function
+
+// Get the detail of a movie
+async function getMovieById(id) {
+    const {data} = await api("movie/" + id);
+
+    const PosterMovieDetail = document.querySelector('.poster-movie-detail');
+    PosterMovieDetail.innerHTML = "";
+    const returnSpan = document.createElement('span');
+    returnSpan.classList.add("material-symbols-outlined");
+    returnSpan.classList.add("return");
+    returnSpan.addEventListener('click', () => {
+        history.back();
+    })
+    returnSpan.innerHTML = "arrow_back";
+    const imgMovieDetail = document.createElement('img');
+    imgMovieDetail.src = "https://image.tmdb.org/t/p/w500" + data.poster_path;
+    imgMovieDetail.alt = data.title;
+    const ShadowDiv = document.createElement('div');
+    ShadowDiv.classList.add("shadow");
+    PosterMovieDetail.appendChild(returnSpan);
+    PosterMovieDetail.appendChild(imgMovieDetail);
+    PosterMovieDetail.appendChild(ShadowDiv);
+
+    const MovieDetailInfo = document.querySelector('.movie-detail-info');
+    MovieDetailInfo.innerHTML = "";
+    const DivTitleStar = document.createElement('div');
+    DivTitleStar.classList.add("titleandstar");
+        const h4 = document.createElement('h4');
+        h4.innerHTML = data.title;
+        const StarSpan = document.createElement('span');
+        StarSpan.classList.add("material-symbols-outlined");
+        StarSpan.innerHTML = "star";
+        DivTitleStar.appendChild(h4);
+        DivTitleStar.appendChild(StarSpan);
+    const h5 = document.createElement('h5');
+    h5.innerHTML = data.overview;
+    MovieDetailInfo.appendChild(DivTitleStar);
+    MovieDetailInfo.appendChild(h5);
+
+    getRecommendedMovies(id);
+} 
+
+async function getRecommendedMovies(movieId) {
+    const {data} = await api(`movie/${movieId}/recommendations`);
+    const movies = data.results;
+
+    const MovieDetailInfo = document.querySelector('.movie-detail-info');
+    const recommended = document.createElement('div');
+    recommended.classList.add('recommended');
+    recommended.innerHTML="";
+    ImgsinDiv(movies, recommended);
+    MovieDetailInfo.appendChild(recommended);
+}
+// Get the detail of a movie
