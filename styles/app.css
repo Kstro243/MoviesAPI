@@ -108,23 +108,36 @@ nav h1 {
      object-fit: cover;
 }
 
-.trending-series {
+.popular-movies {
   height: 25%;
   position: relative;
   top: -90px;
   padding: 10px;
   margin-top: 12px;
 }
-.trending-series ::-webkit-scrollbar {
+.popular-movies ::-webkit-scrollbar {
   width: 0;
 }
-.trending-series h2 {
+.popular-movies .Popular-Texto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.popular-movies .Popular-Texto > :last-child {
+  background: white;
+  color: var(--background);
+  font-size: 117%;
+  border-radius: 10px;
+  padding: 4px;
+  cursor: pointer;
+}
+.popular-movies .Popular-Texto h2 {
   color: var(--font-color);
   margin: 10px 0;
   display: flex;
   align-items: center;
 }
-.trending-series div {
+.popular-movies .este {
   height: 100%;
   display: grid;
   grid-auto-flow: column;
@@ -133,7 +146,7 @@ nav h1 {
   gap: 12px;
   overflow-x: auto;
 }
-.trending-series div img {
+.popular-movies .este img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
@@ -241,14 +254,18 @@ nav h1 {
   left: 10px;
   cursor: pointer;
 }
+.trending-page ::-webkit-scrollbar {
+  width: 0;
+}
 .trending-page .trending-grid {
-  height: 80%;
-  width: 80%;
+  height: 90%;
+  width: 90%;
   margin: 10px auto;
   display: grid;
-  grid-template-columns: 150px 150px;
+  grid-template-columns: 1fr 1fr;
   grid-auto-rows: 250px;
   gap: 16px;
+  overflow-y: auto;
   background: rgb(15, 13, 52);
 }
 .trending-page .trending-grid img {
@@ -291,6 +308,7 @@ nav h1 {
 .sidebar .sidebar-div div h4 {
   margin-bottom: 20px;
   padding-left: 20px;
+  cursor: pointer;
 }
 .sidebar .shadow {
   position: absolute;

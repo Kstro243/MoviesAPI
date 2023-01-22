@@ -1,6 +1,6 @@
 const MoviePreview = document.querySelector('.movie-preview');
 const TrendingMovies = document.querySelector('.trending-movies');
-const TrendingSeries = document.querySelector('.trending-series');
+const PopularMovies = document.querySelector('.popular-movies');
 const MovieDetail = document.querySelector('.movie-detail');
 const TrendingMoviesPage = document.querySelector('.trending-page');
 
@@ -13,7 +13,6 @@ const OpenCategoriesIcon = document.querySelector('.open');
 const CloseCategoriesIcon = document.querySelector('.close');
 
 const returnHome = document.getElementsByClassName('return');
-const imgR = document.getElementsByClassName('detail');
 
 Menu.addEventListener('click', toggleSideBar);
 SpanAside.addEventListener('click', toggleSideBar);
