@@ -26,16 +26,33 @@ async function getTrendingPreview() {
     
     //Trending movies
     const section = document.querySelector(".trending-movies");
-    section.innerHTML = ""
+    section.innerHTML = "";
+
+    const divTexto = document.createElement('div');
+    divTexto.classList.add('Trending-Texto');
     const h2 = document.createElement('h2');
     h2.innerHTML = `Trending movies <span class="material-symbols-outlined">local_fire_department</span>`;
-    section.appendChild(h2);
+    const vermas = document.createElement('h2');
+    vermas.innerHTML = "Ver más";
+    vermas.classList.add('este');
+    vermas.addEventListener('click', () =>{
+        location.hash = "#trending="
+    })
+
+    divTexto.appendChild(h2);
+    divTexto.appendChild(vermas);
+    section.appendChild(divTexto);
+
     const div = document.createElement('div');
+    div.classList.add('tre');
 
     movies.forEach(movie => {
         const img = document.createElement('img');
         img.alt = movie.title;
         img.src = "https://image.tmdb.org/t/p/w500"+ movie.poster_path; 
+        img.addEventListener('click', () =>{
+            location.hash = "#detail="
+        })
 
         div.appendChild(img);
     });

@@ -1,5 +1,6 @@
 :root {
   --background: rgb(2, 0, 36);
+  --background-detail: rgb(9 4 43);
   --sidebar: rgb(7, 4, 20);
   --sidebar-border: rgb(137, 135, 175);
   --font-color: white;
@@ -72,13 +73,26 @@ nav h1 {
 .trending-movies ::-webkit-scrollbar {
   width: 0;
 }
-.trending-movies h2 {
+.trending-movies .Trending-Texto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.trending-movies .Trending-Texto > :last-child {
+  background: white;
+  color: var(--background);
+  font-size: 117%;
+  border-radius: 10px;
+  padding: 4px;
+  cursor: pointer;
+}
+.trending-movies .Trending-Texto h2 {
   color: var(--font-color);
   margin: 10px 0;
   display: flex;
   align-items: center;
 }
-.trending-movies div {
+.trending-movies .tre {
   height: 100%;
   display: grid;
   grid-auto-flow: column;
@@ -87,7 +101,7 @@ nav h1 {
   gap: 12px;
   overflow-x: auto;
 }
-.trending-movies div img {
+.trending-movies .tre img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
@@ -126,14 +140,133 @@ nav h1 {
      object-fit: cover;
 }
 
-.sidebar {
+.movie-detail {
+  width: 100%;
+  height: 90%;
+  background: white;
+}
+.movie-detail .poster-movie-detail {
+  background: gray;
+  height: 50%;
   position: relative;
-  top: -860px;
+}
+.movie-detail .poster-movie-detail span {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: radial-gradient(circle, #ebe1e1 -50%, transparent 90%);
+  border-radius: 50%;
+  z-index: 1;
+}
+.movie-detail .poster-movie-detail img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.movie-detail .poster-movie-detail div {
+  position: absolute;
+  top: 0;
+  background: linear-gradient(180deg, var(--sidebar) 0%, transparent 30%);
+  width: 100%;
+  height: 100%;
+}
+.movie-detail .movie-detail-info {
+  height: 56%;
+  position: relative;
+  top: -38px;
+  background: linear-gradient(180deg, var(--background-detail) 20%, rgb(156, 151, 196) 40%);
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+}
+.movie-detail .movie-detail-info .titleandstar {
+  background: var(--background-detail);
+  color: white;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.movie-detail .movie-detail-info .titleandstar span {
+  position: absolute;
+  right: 16px;
+}
+.movie-detail .movie-detail-info h5 {
+  background: lightgray;
+  width: 90%;
+  height: 32%;
+  margin: 10px auto;
+  border-radius: 16px;
+  padding: 12px;
+}
+.movie-detail .movie-detail-info .recommended {
+  height: 50%;
+  margin-left: 20px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 110px;
+  grid-template-rows: 100%;
+  gap: 12px;
+  overflow-x: auto;
+}
+.movie-detail .movie-detail-info .recommended img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.trending-page {
+  width: 100%;
+  height: 90%;
+}
+.trending-page .trending-list {
+  height: 5%;
+  background: var(--background-detail);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trending-page .trending-list span {
+  position: absolute;
+  left: 10px;
+  cursor: pointer;
+}
+.trending-page .trending-grid {
+  height: 80%;
+  width: 80%;
+  margin: 10px auto;
+  display: grid;
+  grid-template-columns: 150px 150px;
+  grid-auto-rows: 250px;
+  gap: 16px;
+  background: rgb(15, 13, 52);
+}
+.trending-page .trending-grid img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.sidebar {
+  position: absolute;
+  bottom: 0;
   background-color: var(--sidebar);
   color: var(--font-color);
   box-shadow: 0px 0px 0px 0px var(--sidebar);
   width: 40%;
   height: 100%;
+  z-index: 2;
 }
 .sidebar .sidebar-div span {
   width: 100%;
