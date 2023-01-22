@@ -1,7 +1,7 @@
 for (let i = 0; i < returnHome.length; i++) {
     returnHome[i].addEventListener('click', () => {
-            location.hash = "#home="
-          })  
+            location.hash = "#home=";
+          })
 };
 
 window.addEventListener('DOMContentLoaded', navigator, false);
@@ -18,6 +18,8 @@ function navigator(){
         TrendingPage();
     } else if (location.hash.startsWith('#popular=')) {
         PopularPage();
+    } else if (location.hash.startsWith('#search=')) {
+        SearchPageF();
     } else {
         homePage();
     }
@@ -43,6 +45,9 @@ function MovieDetailPage() {
     PopularMovies.classList.add('inactive');
     TrendingMoviesPage.classList.add('inactive');
     MovieDetail.classList.remove('inactive');
+    Search.classList.add('inactive');
+    HomeNav.classList.remove('inactive');
+
     console.log('Search!');
 }
 
@@ -52,6 +57,8 @@ function TrendingPage() {
     PopularMovies.classList.add('inactive');
     TrendingMoviesPage.classList.remove('inactive');
     MovieDetail.classList.add('inactive');
+    Search.classList.add('inactive');
+    HomeNav.classList.remove('inactive');
 
     const [_, tipo] = location.hash.split('=');
     getGenericList(tipo);
@@ -64,10 +71,26 @@ function PopularPage() {
     PopularMovies.classList.add('inactive');
     TrendingMoviesPage.classList.remove('inactive');
     MovieDetail.classList.add('inactive');
+    Search.classList.add('inactive');
+    HomeNav.classList.remove('inactive');
 
     const [_, tipo] = location.hash.split('=');
     getGenericList(tipo);
     console.log('Popular!');
+}
+
+function SearchPageF() {
+    MoviePreview.classList.add('inactive');
+    TrendingMovies.classList.add('inactive');
+    PopularMovies.classList.add('inactive');
+    TrendingMoviesPage.classList.remove('inactive');
+    MovieDetail.classList.add('inactive');
+    Search.classList.add('inactive');
+    HomeNav.classList.remove('inactive');
+
+    const [_, tipo] = location.hash.split('=');
+    getGenericList(tipo);
+    console.log('Search!');
 }
 
 function homePage() {
@@ -81,4 +104,6 @@ function homePage() {
     PopularMovies.classList.remove('inactive');
     TrendingMoviesPage.classList.add('inactive');
     MovieDetail.classList.add('inactive');
+    Search.classList.add('inactive');
+    HomeNav.classList.remove('inactive');
 }

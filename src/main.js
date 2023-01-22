@@ -8,6 +8,7 @@ const api = axios.create({
     },
 });
 
+// HomePage
 async function getTrendingPreview() {
     const {data} = await api("trending/movie/day");
     const movies = data.results;
@@ -19,8 +20,9 @@ async function getTrendingPreview() {
     const divtransparent = document.createElement('div');
     divtransparent.classList.add('transparent');
     const imgpreview = document.createElement('img');
-    imgpreview.alt = movies[0].title;
-    imgpreview.src = "https://image.tmdb.org/t/p/w500"+ movies[0].poster_path; 
+    const i = Math.floor(Math.random() * movies.length);
+    imgpreview.alt = movies[i].title;
+    imgpreview.src = "https://image.tmdb.org/t/p/w500"+ movies[i].poster_path; 
     moviepreview.appendChild(imgpreview);
     moviepreview.appendChild(divtransparent);
     
@@ -94,7 +96,9 @@ async function getPopularMovies() {
 
     section.appendChild(div);
 }
+// HomePage
 
+// Sidebar categories
 async function getCategories() {
     const {data} = await api("genre/movie/list");
 
@@ -115,58 +119,11 @@ async function getCategories() {
         categoriesdiv.appendChild(h4);
     })
 }
+// Sidebar categories
 
-async function getMovieByCategory(id, name) {
-    const {data} = await api("/discover/movie", {
-        params: {
-            with_genres: id,
-        }
-    });
-
-    const categories = data.results;
-    console.log(categories);
-
-    const categoriesdiv = document.querySelector('.trending-page');
-    categoriesdiv.innerHTML = "";
-
-    const trendingList = document.createElement('div');
-    trendingList.classList.add('trending-list');
-    const h4 = document.createElement('h4');
-    h4.innerHTML = name;
-    const span = document.createElement('span');
-    span.innerHTML = "arrow_back";
-    span.classList.add('material-symbols-outlined');
-    span.classList.add('return');
-    span.addEventListener('click', () => {
-        location.hash = "#home=";
-    })
-    trendingList.appendChild(h4);
-    trendingList.appendChild(span);
-    categoriesdiv.appendChild(trendingList);
-
-    const trendingGrid = document.createElement('div');
-    trendingGrid.classList.add('trending-grid');
-
-    categories.forEach(category => {
-        const img = document.createElement('img');
-        img.src = "https://image.tmdb.org/t/p/w500" + category.poster_path;
-        img.alt = category.title;
-
-        trendingGrid.appendChild(img);
-    })
-
-    categoriesdiv.appendChild(trendingGrid);
-}
-
-async function getGenericList(type) {
-    if (type === "Popular") {
-        var {data} = await api("movie/popular");
-        var movies = data.results;
-        } else {
-        var {data} = await api("trending/movie/day");
-        var movies = data.results;
-    }
-
+// Generic list
+function generateGenericList(nombre, data) {
+    const movies = data.results;
     console.log(movies);
 
     const categoriesdiv = document.querySelector('.trending-page');
@@ -175,7 +132,7 @@ async function getGenericList(type) {
     const trendingList = document.createElement('div');
     trendingList.classList.add('trending-list');
     const h4 = document.createElement('h4');
-    h4.innerHTML = type;
+    h4.innerHTML = nombre;
     const span = document.createElement('span');
     span.innerHTML = "arrow_back";
     span.classList.add('material-symbols-outlined');
@@ -200,3 +157,28 @@ async function getGenericList(type) {
 
     categoriesdiv.appendChild(trendingGrid);
 }
+
+async function getMovieByCategory(id, name) {
+    // const {data} = await api("/discover/movie", {
+    //     params: {
+    //         with_genres: id,
+    //     }
+    // });
+
+    const {data} = await api(`/discover/movie?with_genres=${id}`);
+
+    generateGenericList(name, data);
+}
+
+async function getGenericList(type) {
+    if (type === "Popular") {
+            var {data} = await api("movie/popular");
+        } else if (type == "Trending") {
+            var {data} = await api("trending/movie/day");
+        } else {
+            var {data} = await api(`search/movie?query=${type}`);
+        }
+
+    generateGenericList(type, data);
+}
+// Generic list

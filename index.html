@@ -15,9 +15,16 @@
 </head>
 <body>
     <nav>
-        <span class="material-symbols-outlined menu">menu</span>
-        <h1>Movies4u</h1>
-        <span class="material-symbols-outlined">search</span>
+        <div class="HomeNav">
+            <span class="material-symbols-outlined menu">menu</span>
+            <h1>Movies4u</h1>
+            <span class="material-symbols-outlined" onclick = toggleSearchBar()>search</span>
+        </div>
+        <div class="Search inactive">
+            <span class="material-symbols-outlined" onclick = toggleSearchBar()>close</span>
+            <input type="text" placeholder="Search...">
+            <span class="material-symbols-outlined SearchPage">search</span>
+        </div>
     </nav>
 
     <!-- Home page -->
